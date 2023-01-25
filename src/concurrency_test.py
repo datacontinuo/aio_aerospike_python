@@ -21,10 +21,10 @@ async def put_some_data(limit: int):
 
 
 async def read_data(limit: int):
-    for i in range(limit):
-        key = ("test", "test", i)
-        r = await client.get(key)
-        print(r)
+    keys = [("test", "test", i) for i in range(limit) ]
+    # print(keys)
+    r = await client.get_many(keys)
+    print(r)
 
 
 async def use_query(mina: int, maxa: int):
@@ -53,12 +53,12 @@ async def use_scan(mina: int, maxa: int):
         print(r)
 
 
+async def main():
+    L = await asyncio.gather(
+        put_some_data(700),
+        read_data(50),
+        use_query(10, 20),
+        use_scan(40, 45),
+    )
 
-
-loop = asyncio.get_event_loop()
-loop.run_until_complete(put_some_data(5000))
-loop.run_until_complete(read_data(50))
-loop.run_until_complete(use_query(10,20))
-loop.run_until_complete(use_scan(40, 45))
-
-# client.close()
+asyncio.run(main())

@@ -4,10 +4,6 @@ import aerospike
 import asyncio
 from aio_aerospike_python import AioAerospikeClient
 from aerospike_helpers.batch.records import BatchRecords
-from aio_aerospike_python import(
-    INDEX_STRING,
-    INDEX_NUMERIC,
-    INDEX_TYPE_LIST)
 
 
 class Connect(unittest.TestCase):
@@ -20,7 +16,7 @@ class Connect(unittest.TestCase):
 
         # cls.assertTrue(cls.client.is_connected())
     
-    async def test_append(self, key=("test","test",3), bin="a", val=2, meta=None, policy=None):
+    async def test_append(self, key, bin, val, meta, policy):
         return await self._client.append(key, bin, val, meta, policy)
         
     async def test_apply(self, key, module, function, args, policy):
@@ -41,8 +37,8 @@ class Connect(unittest.TestCase):
     async def test_batch_write(self, batch_records, policy) :
         return await self._client.batch_write(batch_records, policy) 
         
-    # async def test_close(self):
-    #     return await self._client.close()
+    async def test_close(self):
+        return await self._client.close()
         
     async def test_connect(self, username, password):
         return await self._client.connect(username, password)
@@ -65,10 +61,10 @@ class Connect(unittest.TestCase):
     async def test_get_expression_base64(self, compiled_expression: list) :
         return await self._client.get_expression_base64(compiled_expression) 
         
-    async def test_get_key_digest(self, ns="test", set="test", key=1) :
+    async def test_get_key_digest(self, ns, set, key) :
         return await self._client.get_key_digest(ns, set, key) 
         
-    async def test_get_key_partition_id(self, ns="test", set="test", key=1) :
+    async def test_get_key_partition_id(self, ns, set, key) :
         return await self._client.get_key_partition_id(ns, set, key) 
         
     async def test_get_many(self, keys, policy) :
@@ -80,37 +76,37 @@ class Connect(unittest.TestCase):
     async def test_get_nodes(self, ) :
         return await self._client.get_nodes() 
         
-    async def test_increment(self, key=("test","test",3), bin="a", offset=2, meta=None, policy=None):
+    async def test_increment(self, key, bin, offset, meta, policy):
         return await self._client.increment(key, bin, offset, meta, policy)
         
-    # async def test_index_cdt_create(self, ns="test", set="test", bin="a",  index_type=aerospike.INDEX_STRING, index_datatype, index_name, ctx, policy):
-    #     return await self._client.index_cdt_create(ns, set, bin,  index_type, index_datatype, index_name, ctx, policy)
+    async def test_index_cdt_create(self, ns, set, bin,  index_type, index_datatype, index_name, ctx, policy):
+        return await self._client.index_cdt_create(ns, set, bin,  index_type, index_datatype, index_name, ctx, policy)
         
-    # async def test_index_geo2dsphere_create(self, ns="test", set="test", bin="a", index_name, policy):
-    #     return await self._client.index_geo2dsphere_create(ns, set, bin, index_name, policy)
+    async def test_index_geo2dsphere_create(self, ns, set, bin, index_name, policy):
+        return await self._client.index_geo2dsphere_create(ns, set, bin, index_name, policy)
         
-    async def test_index_integer_create(self, ns="test", set="test", bin="a", index_name="aidx", policy=None):
+    async def test_index_integer_create(self, ns, set, bin, index_name, policy):
         return await self._client.index_integer_create(ns, set, bin, index_name, policy)
         
-    async def test_index_list_create(self, ns="test", set="test", bin="b", index_datatype=INDEX_STRING, index_name="bidx", policy=None):
+    async def test_index_list_create(self, ns, set, bin, index_datatype, index_name, policy):
         return await self._client.index_list_create(ns, set, bin, index_datatype, index_name, policy)
         
-    async def test_index_map_keys_create(self, ns="test", set="test", bin="a", index_datatype=INDEX_STRING, index_name="mapkeytest", policy=None):
+    async def test_index_map_keys_create(self, ns, set, bin, index_datatype, index_name, policy):
         return await self._client.index_map_keys_create(ns, set, bin, index_datatype, index_name, policy)
         
-    async def test_index_map_values_create(self, ns="test", set="test", bin="a", index_datatype=INDEX_STRING, index_name="mapvaluetest", policy=None):
+    async def test_index_map_values_create(self, ns, set, bin, index_datatype, index_name, policy):
         return await self._client.index_map_values_create(ns, set, bin, index_datatype, index_name, policy)
         
-    async def test_index_remove(self, ns="test", index_name="bidx", policy=None):
+    async def test_index_remove(self, ns, index_name, policy):
         return await self._client.index_remove(ns, index_name, policy)
         
-    async def test_index_string_create(self, ns="test", set="test", bin="c", index_name="stridx", policy=None):
+    async def test_index_string_create(self, ns, set, bin, index_name, policy):
         return await self._client.index_string_create(ns, set, bin, index_name, policy)
         
-    async def test_info(self, command="alumni-clear-std", hosts=["localhost"], policy=None) :
+    async def test_info(self, command, hosts, policy) :
         return await self._client.info(command, hosts, policy) 
         
-    async def test_info_all(self, command="alumni-clear-std", policy=None) :
+    async def test_info_all(self, command, policy) :
         return await self._client.info_all(command, policy) 
         
     async def test_info_node(self, command, host, policy) :
@@ -128,7 +124,7 @@ class Connect(unittest.TestCase):
     async def test_job_info(self, job_id, module, policy) :
         return await self._client.job_info(job_id, module, policy) 
         
-    async def test_list_append(self, key=("test","test",3), bin="b", val=2, meta=None, policy=None):
+    async def test_list_append(self, key, bin, val, meta, policy):
         return await self._client.list_append(key, bin, val, meta, policy)
         
     async def test_list_clear(self, key, bin, meta, policy):
@@ -257,7 +253,7 @@ class Connect(unittest.TestCase):
     async def test_operate_ordered(self, key, list, meta, policy) :
         return await self._client.operate_ordered(key, list, meta, policy) 
         
-    async def test_prepend(self, key=("test","test",3), bin="c", val=2, meta=None, policy=None):
+    async def test_prepend(self, key, bin, val, meta, policy):
         return await self._client.prepend(key, bin, val, meta, policy)
         
     async def test_put(self, key, bins, meta, policy, serializer):
@@ -269,7 +265,7 @@ class Connect(unittest.TestCase):
     async def test_query(self, namespace, set) :
         return await self._client.query(namespace, set) 
         
-    async def test_query_apply(self, ns="test", set="test", predicate=None, module=None, function=None, args=None, policy=None) :
+    async def test_query_apply(self, ns, set, predicate, module, function, args, policy) :
         return await self._client.query_apply(ns, set, predicate, module, function, args, policy) 
         
     async def test_remove(self, key, policy):
@@ -281,7 +277,7 @@ class Connect(unittest.TestCase):
     async def test_scan(self, namespace, set) :
         return await self._client.scan(namespace, set) 
         
-    async def test_scan_apply(self, ns="test", set="test", module=None, function=None, args=None, policy=None, options=None, block=None) :
+    async def test_scan_apply(self, ns, set, module, function, args, policy, options, block) :
         return await self._client.scan_apply(ns, set, module, function, args, policy, options, block) 
         
     async def test_scan_info(self, scan_id) :
