@@ -19,6 +19,11 @@ class Connect(unittest.IsolatedAsyncioTestCase):
         cls.client = AioAerospikeClient(config)
 
         # cls.assertTrue(cls.client.is_connected())
+        cls.set = "test"
+        cls.ns = "test"
+        cls.key = ("test","test",1)
+        cls.module = "mod1"
+
     
     async def test_append(self, key=("test","test",3), bin="a", val=2, meta=None, policy=None):
         return await self._client.append(key, bin, val, meta, policy)
