@@ -39,7 +39,7 @@ class AioAerospikeQuery():
         '''
         loop = asyncio.get_event_loop()
         return await loop.run_in_executor(None,
-                partial(self._query.get_parts)
+                partial(self._query.get_parts))
 
     def is_done(self) -> bool:
         '''If using query pagination, did the previous paginated query with this query instance return all records?

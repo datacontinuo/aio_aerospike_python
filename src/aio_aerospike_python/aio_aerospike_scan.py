@@ -19,14 +19,14 @@ class AioAerospikeScan():
         '''
         loop = asyncio.get_event_loop()
         return await loop.run_in_executor(None, 
-                partial(self._scan.results, policy , nodename) ))
+                partial(self._scan.results, policy , nodename))
             
     async def results(self,policy=None , nodename=None) -> list:
         '''Buffer the records resulting from the scan, and return them as a list of records.If provided nodename should be the Node ID of a node to limit the scan to.
         '''
         loop = asyncio.get_event_loop()
         return await loop.run_in_executor(None, 
-                partial(self._scan.results, policy , nodename) ))
+                partial(self._scan.results, policy , nodename))
             
     async def foreach(self, callback=None, policy=None, options=None, nodename=None):
         '''Invoke the callback function for each of the records streaming back from the scan. If provided nodename should be the Node ID of a node to limit the scan to.

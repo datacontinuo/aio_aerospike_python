@@ -122,14 +122,14 @@ class AioAerospikeClient():
         '''
         loop = asyncio.get_event_loop()
         return await loop.run_in_executor(None,
-                                          partial(self._client.get_node_names)
+                                          partial(self._client.get_node_names))
 
     async def get_nodes(self) -> list:
         '''Return the list of hosts present in a connected cluster.
         '''
         loop=asyncio.get_event_loop()
         return await loop.run_in_executor(None,
-                                          partial(self._client.get_nodes)
+                                          partial(self._client.get_nodes))
 
     async def increment(self, key: tuple, bin: str, offset: Union[int, float], meta: dict=None, policy: dict=None):
         '''Increment the integer value in bin by the integer val.
@@ -185,7 +185,7 @@ class AioAerospikeClient():
         '''
         loop=asyncio.get_event_loop()
         return await loop.run_in_executor(None,
-                                          partial(self._client.index_remove(
+                                          partial(self._client.index_remove,
                                               ns, index_name, policy))
 
     async def index_string_create(self, ns, set, bin, index_name, policy=None):
