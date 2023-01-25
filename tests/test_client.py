@@ -10,7 +10,7 @@ from aio_aerospike_python import(
     INDEX_TYPE_LIST)
 
 
-class Connect(unittest.TestCase):
+class Connect(unittest.IsolatedAsyncioTestCase):
     @classmethod
     def setUpClass(cls) -> None:
         config = {
@@ -23,7 +23,7 @@ class Connect(unittest.TestCase):
     async def test_append(self, key=("test","test",3), bin="a", val=2, meta=None, policy=None):
         return await self._client.append(key, bin, val, meta, policy)
         
-    async def test_apply(self, key, module, function, args, policy):
+    async def test_apply(self, key, module, function, args,policy=None):
         return await self._client.apply(key, module, function, args, policy)
         
     async def test_batch_apply(self, keys, module, function, args, policy_batch, policy_batch_apply) :
@@ -83,10 +83,10 @@ class Connect(unittest.TestCase):
     async def test_increment(self, key=("test","test",3), bin="a", offset=2, meta=None, policy=None):
         return await self._client.increment(key, bin, offset, meta, policy)
         
-    # async def test_index_cdt_create(self, ns="test", set="test", bin="a",  index_type=aerospike.INDEX_STRING, index_datatype, index_name, ctx, policy):
+    # async def test_index_cdt_create(self, ns="test", set="test", bin="a",  index_type=aerospike.INDEX_STRING, index_datatype, index_name, ctx,policy=None):
     #     return await self._client.index_cdt_create(ns, set, bin,  index_type, index_datatype, index_name, ctx, policy)
         
-    # async def test_index_geo2dsphere_create(self, ns="test", set="test", bin="a", index_name, policy):
+    # async def test_index_geo2dsphere_create(self, ns="test", set="test", bin="a", index_name,policy=None):
     #     return await self._client.index_geo2dsphere_create(ns, set, bin, index_name, policy)
         
     async def test_index_integer_create(self, ns="test", set="test", bin="a", index_name="aidx", policy=None):
@@ -131,10 +131,10 @@ class Connect(unittest.TestCase):
     async def test_list_append(self, key=("test","test",3), bin="b", val=2, meta=None, policy=None):
         return await self._client.list_append(key, bin, val, meta, policy)
         
-    async def test_list_clear(self, key, bin, meta, policy):
+    async def test_list_clear(self, key, bin, meta=None, policy=None):
         return await self._client.list_clear(key, bin, meta, policy)
         
-    async def test_list_extend(self, key, bin, items, meta, policy):
+    async def test_list_extend(self, key, bin, items, meta=None, policy=None):
         return await self._client.list_extend(key, bin, items, meta, policy)
         
     async def test_list_get(self, key, bin, index, meta, policy) :
@@ -143,10 +143,10 @@ class Connect(unittest.TestCase):
     async def test_list_get_range(self, key, bin, index, count, meta, policy) :
         return await self._client.list_get_range(key, bin, index, count, meta, policy) 
         
-    async def test_list_insert(self, key, bin, index, val, meta, policy):
+    async def test_list_insert(self, key, bin, index, val, meta=None, policy=None):
         return await self._client.list_insert(key, bin, index, val, meta, policy)
         
-    async def test_list_insert_items(self, key, bin, index, items, meta, policy):
+    async def test_list_insert_items(self, key, bin, index, items, meta=None, policy=None):
         return await self._client.list_insert_items(key, bin, index, items, meta, policy)
         
     async def test_list_pop(self, key, bin, index, meta, policy) :
@@ -155,13 +155,13 @@ class Connect(unittest.TestCase):
     async def test_list_pop_range(self, key, bin, index, count, meta, policy) :
         return await self._client.list_pop_range(key, bin, index, count, meta, policy) 
         
-    async def test_list_remove(self, key, bin, index, meta, policy):
+    async def test_list_remove(self, key, bin, index, meta=None, policy=None):
         return await self._client.list_remove(key, bin, index, meta, policy)
         
-    async def test_list_remove_range(self, key, bin, index, count, meta, policy):
+    async def test_list_remove_range(self, key, bin, index, count, meta=None, policy=None):
         return await self._client.list_remove_range(key, bin, index, count, meta, policy)
         
-    async def test_list_set(self, key, bin, index, val, meta, policy):
+    async def test_list_set(self, key, bin, index, val, meta=None, policy=None):
         return await self._client.list_set(key, bin, index, val, meta, policy)
         
     async def test_list_size(self, key, bin, meta, policy) :
@@ -170,79 +170,79 @@ class Connect(unittest.TestCase):
     async def test_list_trim(self, key, bin, index, count, meta, policy) :
         return await self._client.list_trim(key, bin, index, count, meta, policy) 
         
-    async def test_map_clear(self, key, bin, meta, policy):
+    async def test_map_clear(self, key, bin, meta=None, policy=None):
         return await self._client.map_clear(key, bin, meta, policy)
         
-    async def test_map_decrement(self, key, bin, map_key, decr, map_policy, meta, policy):
+    async def test_map_decrement(self, key, bin, map_key, decr, map_policy=None, meta=None, policy=None):
         return await self._client.map_decrement(key, bin, map_key, decr, map_policy, meta, policy)
         
-    async def test_map_get_by_index(self, key, bin, index, return_type, meta, policy):
+    async def test_map_get_by_index(self, key, bin, index, return_type, meta=None, policy=None):
         return await self._client.map_get_by_index(key, bin, index, return_type, meta, policy)
         
-    async def test_map_get_by_index_range(self, key, bin, index, range, return_type, meta, policy):
+    async def test_map_get_by_index_range(self, key, bin, index, range, return_type, meta=None, policy=None):
         return await self._client.map_get_by_index_range(key, bin, index, range, return_type, meta, policy)
         
-    async def test_map_get_by_key(self, key, bin, map_key, return_type, meta, policy):
+    async def test_map_get_by_key(self, key, bin, map_key, return_type, meta=None, policy=None):
         return await self._client.map_get_by_key(key, bin, map_key, return_type, meta, policy)
         
-    async def test_map_get_by_value_range(self, key, bin, key_list, return_type, meta, policy):
+    async def test_map_get_by_value_range(self, key, bin, key_list, return_type, meta=None, policy=None):
         return await self._client.map_get_by_value_range(key, bin, key_list, return_type, meta, policy)
         
-    async def test_map_get_by_key_range(self, key, bin, map_key, range, return_type, meta, policy):
+    async def test_map_get_by_key_range(self, key, bin, map_key, range, return_type, meta=None, policy=None):
         return await self._client.map_get_by_key_range(key, bin, map_key, range, return_type, meta, policy)
         
-    async def test_map_get_by_rank(self, key, bin, rank, return_type, meta, policy):
+    async def test_map_get_by_rank(self, key, bin, rank, return_type, meta=None, policy=None):
         return await self._client.map_get_by_rank(key, bin, rank, return_type, meta, policy)
         
-    async def test_map_get_by_rank_range(self, key, bin, rank, range, return_type, meta, policy):
+    async def test_map_get_by_rank_range(self, key, bin, rank, range, return_type, meta=None, policy=None):
         return await self._client.map_get_by_rank_range(key, bin, rank, range, return_type, meta, policy)
         
-    async def test_map_get_by_value(self, key, bin, val, return_type, meta, policy):
+    async def test_map_get_by_value(self, key, bin, val, return_type, meta=None, policy=None):
         return await self._client.map_get_by_value(key, bin, val, return_type, meta, policy)
         
-    async def test_map_get_by_value_range(self, key, bin, value_list, return_type, meta, policy):
+    async def test_map_get_by_value_range(self, key, bin, value_list, return_type, meta=None, policy=None):
         return await self._client.map_get_by_value_range(key, bin, value_list, return_type, meta, policy)
         
-    async def test_map_get_by_value_range(self, key, bin, val, range, return_type, meta, policy):
+    async def test_map_get_by_value_range(self, key, bin, val, range, return_type, meta=None, policy=None):
         return await self._client.map_get_by_value_range(key, bin, val, range, return_type, meta, policy)
         
-    async def test_map_increment(self, key, bin, map_key, incr, map_policy, meta, policy):
+    async def test_map_increment(self, key, bin, map_key, incr, map_policy=None, meta=None, policy=None):
         return await self._client.map_increment(key, bin, map_key, incr, map_policy, meta, policy)
         
-    async def test_map_put(self, key, bin, map_key, val, map_policy, meta, policy):
+    async def test_map_put(self, key, bin, map_key, val, map_policy=None, meta=None, policy=None):
         return await self._client.map_put(key, bin, map_key, val, map_policy, meta, policy)
         
-    async def test_map_put_items(self, key, bin, items, map_policy, meta, policy):
+    async def test_map_put_items(self, key, bin, items, map_policy=None, meta=None, policy=None):
         return await self._client.map_put_items(key, bin, items, map_policy, meta, policy)
         
-    async def test_map_remove_by_index(self, key, bin, index, return_type, meta, policy):
+    async def test_map_remove_by_index(self, key, bin, index, return_type, meta=None, policy=None):
         return await self._client.map_remove_by_index(key, bin, index, return_type, meta, policy)
         
-    async def test_map_remove_by_index_range(self, key, bin, index, range, return_type, meta, policy):
+    async def test_map_remove_by_index_range(self, key, bin, index, range, return_type, meta=None, policy=None):
         return await self._client.map_remove_by_index_range(key, bin, index, range, return_type, meta, policy)
         
-    async def test_map_remove_by_key(self, key, bin, map_key, return_type, meta, policy):
+    async def test_map_remove_by_key(self, key, bin, map_key, return_type, meta=None, policy=None):
         return await self._client.map_remove_by_key(key, bin, map_key, return_type, meta, policy)
         
-    async def test_map_remove_by_key_list(self, key, bin, list, return_type, meta, policy):
+    async def test_map_remove_by_key_list(self, key, bin, list, return_type, meta=None, policy=None):
         return await self._client.map_remove_by_key_list(key, bin, list, return_type, meta, policy, meta, policy)
         
-    async def test_map_remove_by_key_range(self, key, bin, map_key, range, return_type, meta, policy):
+    async def test_map_remove_by_key_range(self, key, bin, map_key, range, return_type, meta=None, policy=None):
         return await self._client.map_remove_by_key_range(key, bin, map_key, range, return_type, meta, policy)
         
-    async def test_map_remove_by_rank(self, key, bin, rank, return_type, meta, policy):
+    async def test_map_remove_by_rank(self, key, bin, rank, return_type, meta=None, policy=None):
         return await self._client.map_remove_by_rank(key, bin, rank, return_type, meta, policy)
         
-    async def test_map_remove_by_rank_range(self, key, bin, rank, range, return_type, meta, policy):
+    async def test_map_remove_by_rank_range(self, key, bin, rank, range, return_type, meta=None, policy=None):
         return await self._client.map_remove_by_rank_range(key, bin, rank, range, return_type, meta, policy)
         
-    async def test_map_remove_by_value(self, key, bin, val, return_type, meta, policy):
+    async def test_map_remove_by_value(self, key, bin, val, return_type, meta=None, policy=None):
         return await self._client.map_remove_by_value(key, bin, val, return_type, meta, policy)
         
-    async def test_map_remove_by_value_list(self, key, bin, list, return_type, meta, policy):
+    async def test_map_remove_by_value_list(self, key, bin, list, return_type, meta=None, policy=None):
         return await self._client.map_remove_by_value_list(key, bin, list, return_type, meta, policy)
         
-    async def test_map_remove_by_value_range(self, key, bin, val, range, return_type, meta, policy):
+    async def test_map_remove_by_value_range(self, key, bin, val, range, return_type, meta=None, policy=None):
         return await self._client.map_remove_by_value_range(key, bin, val, range, return_type, meta, policy)
         
     async def test_map_set_policy(self, key, bin, map_policy):
@@ -260,22 +260,19 @@ class Connect(unittest.TestCase):
     async def test_prepend(self, key=("test","test",3), bin="c", val=2, meta=None, policy=None):
         return await self._client.prepend(key, bin, val, meta, policy)
         
-    async def test_put(self, key, bins, meta, policy, serializer):
+    async def test_put(self, key=("test","test",1), bins={"a":1}, meta=None, policy=None, serializer=None):
         return await self._client.put(key, bins, meta, policy, serializer)
-        
-    async def test_put(self, key, bins, meta, policy, serializer):
-        return await self._client.put(key, bins, meta, policy, serializer)
-        
+               
     async def test_query(self, namespace, set) :
         return await self._client.query(namespace, set) 
         
     async def test_query_apply(self, ns="test", set="test", predicate=None, module=None, function=None, args=None, policy=None) :
         return await self._client.query_apply(ns, set, predicate, module, function, args, policy) 
         
-    async def test_remove(self, key, policy):
+    async def test_remove(self, key,policy=None):
         return await self._client.remove(key, policy)
         
-    async def test_remove_bin(self, key, list, meta, policy):
+    async def test_remove_bin(self, key, list, meta=None, policy=None):
         return await self._client.remove_bin(key, list, meta, policy)
         
     async def test_scan(self, namespace, set) :
@@ -287,7 +284,7 @@ class Connect(unittest.TestCase):
     async def test_scan_info(self, scan_id) :
         return await self._client.scan_info(scan_id) 
         
-    async def test_select(self, key, bins, policy) :
+    async def test_select(self, key=("test","test",1), bins=["a"], policy=None) :
         return await self._client.select(key, bins, policy) 
         
     async def test_select_many(self, keys, bins, policy) :
@@ -302,7 +299,7 @@ class Connect(unittest.TestCase):
     async def test_touch(self, key, val=0, meta=None, policy=None):
         return await self._client.touch(key, val, meta, policy)
         
-    async def test_truncate(self, namespace, set, nanos, policy):
+    async def test_truncate(self, namespace, set, nanos,policy=None):
         return await self._client.truncate(namespace, set, nanos, policy)
         
     async def test_udf_get(self, module, language, policy) :
@@ -311,15 +308,15 @@ class Connect(unittest.TestCase):
     async def test_udf_list(self, policy) :
         return await self._client.udf_list(policy) 
         
-    async def test_udf_put(self, filename, udf_type, policy):
+    async def test_udf_put(self, filename, udf_type,policy=None):
         return await self._client.udf_put(filename, udf_type, policy)
         
-    async def test_udf_remove(self, module, policy):
+    async def test_udf_remove(self, module,policy=None):
         return await self._client.udf_remove(module, policy)
 
 
-    def test1(self):
+    async def test1(self):
         keys = [("test", "test", i) for i in range(1000) ]
-        asyncio.run(self.test_get_many(keys, None))
+        await self.test_get_many(keys, None)
 
         
