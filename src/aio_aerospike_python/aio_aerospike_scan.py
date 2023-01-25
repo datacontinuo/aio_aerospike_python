@@ -4,8 +4,8 @@ import asyncio
 from functools import partial
 
 class AioAerospikeScan():
-    def __init__(self, client:aerospike.client,namespace:str,set_name:str=None) -> None:
-        self._scan = aerospike.Scan(client, namespace, set_name)
+    def __init__(self, scan:aerospike.Scan) -> None:
+        self._scan = scan
     
     async def results(self, policy=None , nodename=None) -> list:
         '''Buffer the records resulting from the scan, and return them as a list of records.If provided nodename should be the Node ID of a node to limit the scan to.

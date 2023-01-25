@@ -5,8 +5,8 @@ from functools import partial
 
 
 class AioAerospikeQuery():
-    def __init__(self, client: aerospike.Client, ns: str, setname: str = None):
-        self._query = aerospike.Query(client, ns, setname)
+    def __init__(self, query: aerospike.Query):
+        self._query = query
 
     async def add_ops(self, ops):
         '''Add a list of write ops to the query. When used with :meth:`Query.execute_background` the query will perform the write ops on any records found. If no predicate is attached to the Query it will apply ops to all the records in the specified set.
