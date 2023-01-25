@@ -1,0 +1,9 @@
+#should be in polyglot folder 
+version: "3"
+services:
+  aerospike:
+      hostname: aerospike
+      container_name: aerospike
+      ports: 
+          - 3000-3002:3000-3002
+      image: aerospike:ce-6.2.0.2

@@ -1,0 +1,19 @@
+[project]
+name = "aio_aerospike_python"
+version = "0.0.1"
+authors = [
+  { name="David Levy", email="davidvoler@gmail.com" },
+  { name="David", email="david@datacontinuo.com" },
+]
+description = "Asyncio wrapper of aerospike python client"
+readme = "README.md"
+requires-python = ">=3.7"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/datacontinuo-com/aio_aerospike_python"
+"Bug Tracker" = "https://github.com/datacontinuo-com/aio_aerospike_python/issues"
