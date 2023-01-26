@@ -11,7 +11,6 @@ This project is work in progress. please do not use it in production yet.
 
 
 This project provides a simple way to use aerospike with asyncio. 
-The aerospike 
 
 
 ## installation ##
@@ -20,6 +19,7 @@ To test it you will need to build locally and pip install from a local directory
 
 ```bash
 python3 -m pip install --upgrade build
+python3 -m build
 pip install -e .
 ```
 

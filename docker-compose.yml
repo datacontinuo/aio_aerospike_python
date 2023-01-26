@@ -1,4 +1,3 @@
-#should be in polyglot folder 
 version: "3"
 services:
   aerospike:
