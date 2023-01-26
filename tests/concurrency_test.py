@@ -60,7 +60,6 @@ async def test_append(key=("test","test",3), bin="a", val="test", meta=None, pol
     r = await client.get(key=key)
     key, _, bin = r
     print("append")
-    
     print(r)
 
 async def main():
