@@ -53,12 +53,23 @@ async def use_scan(mina: int, maxa: int):
         print(r)
 
 
+
+async def test_append(key=("test","test",3), bin="a", val="test", meta=None, policy=None):
+    await client.put(key=key, bins={"vv":"test_"})
+    await client.append(key=key, bin="vv", val="append", meta=meta, policy=policy)
+    r = await client.get(key=key)
+    key, _, bin = r
+    print("append")
+    
+    print(r)
+
 async def main():
     L = await asyncio.gather(
         put_some_data(700),
         read_data(50),
         use_query(10, 20),
         use_scan(40, 45),
+        test_append()
     )
 
 asyncio.run(main())

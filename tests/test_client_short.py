@@ -26,8 +26,13 @@ class Connect(unittest.IsolatedAsyncioTestCase):
         cls.keys = [("test", "test", i) for i in range(1000) ]
 
     
-    async def test_append(self, key=("test","test",3), bin="a", val=2, meta=None, policy=None):
-        return await self._client.append(key, bin, val, meta, policy)
+    async def test_append(self, key=("test","test",3599587), bin="a", val="test", meta=None, policy=None):
+        await self.test_put(key=key, bins={"vv":"test_"})
+        await self._client.append(key=key, bin="vv", val="append", meta=meta, policy=policy)
+        r = await self.test_get(key=key)
+        key, _, bin = r
+        self.assertEqual(bin.get("vv"),"test_append", "Append text works")
+        # print (bin.get("vv"))
         
     # async def test_apply(self, key, module, function, args,policy=None):
     #     return await self._client.apply(key, module, function, args, policy)
@@ -54,7 +59,7 @@ class Connect(unittest.IsolatedAsyncioTestCase):
     #     return await self._client.connect(username, password)
         
     async def test_exists(self, key=("test","test",1), policy=None) :
-        return await self._client.exists(key, policy) 
+        val =  await self._client.exists(key, policy) 
         
     async def test_exists_many(self, keys=[("test","test",1),("test","test",2)], policy=None) :
         return await self._client.exists_many(keys, policy) 
@@ -72,22 +77,37 @@ class Connect(unittest.IsolatedAsyncioTestCase):
     #     return await self._client.get_expression_base64(compiled_expression) 
         
     def test_get_key_digest(self, ns="test", set="test", key=1) :
-        return self._client.get_key_digest(ns, set, key) 
-        
+        r = self._client.get_key_digest(ns, set, key) 
+        self.assertEqual(r, b'\xf5\xf8o=HU\xad\xff\xe8\xde\xf9\xa0\xd9\x02\xfa\xc7\x1fW\x8b\x8f')
+        print(r)
     async def test_get_key_partition_id(self, ns="test", set="test", key=1) :
-        return self._client.get_key_partition_id(ns, set, key) 
+        r =  self._client.get_key_partition_id(ns, set, key) 
         
     async def test_get_many(self, keys=[("test","test",1),("test","test",2)], policy=None) :
-        return await self._client.get_many(keys, policy) 
-        
+        results =  await self._client.get_many(keys=[("test","test",10000000),("test","test",10000001)])
+        print(results) 
+        found = []
+        for r in results:
+            if r[2]:
+                found.append(r)
+        print(len(found))
+        self.assertEqual(len(results),2, "we got 2 results from get_many")
+        self.assertEqual(len(found),0, "we found 0  records")
+
     async def test_get_node_names(self) :
-        return await self._client.get_node_names() 
-        
+        r =  await self._client.get_node_names() 
+        print(r)
     async def test_get_nodes(self) :
         return await self._client.get_nodes() 
         
-    async def test_increment(self, key=("test","test",3), bin="a", offset=2, meta=None, policy=None):
-        return await self._client.increment(key, bin, offset, meta, policy)
+    async def test_increment(self, key=("test","test",300001), bin="a", offset=2, meta=None, policy=None):
+        await self.test_put(key=key, bins={"bfloat":3.6, "bint":5})
+        await self._client.increment(key=key, bin="bfloat", offset=0.4)
+        await self._client.increment(key=key, bin="bint", offset=5)
+        r = await self.test_get(key=key)
+        _,_,b = r
+        self.assertEqual(b.get("bfloat"), 4.0, "increment float")
+        self.assertEqual(b.get("bint"),10 , "increment int")
         
     # async def test_index_cdt_create(self, ns="test", set="test", bin="a",  index_type=aerospike.INDEX_STRING, index_datatype, index_name, ctx,policy=None):
     #     return await self._client.index_cdt_create(ns, set, bin,  index_type, index_datatype, index_name, ctx, policy)
