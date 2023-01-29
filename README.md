@@ -5,7 +5,7 @@ This project is work in progress. please do not use it in production yet.
     <a href="https://github.com/datacontinuo-com/aio_aerospike_python" target="_blank">
         <img src="https://img.shields.io/github/last-commit/datacontinuo-com/aio_aerospike_python" alt="Latest Commit">
     </a>
-    <img src="https://opensource.org/licenses/Apache-2.0">
+    <img src="https://img.shields.io/badge/License-Apache_2.0-blue.svg">
     <img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/datacontinuo-com/aio_aerospike_python?label=Latest%20Release">
     <br />
     <a href="https://github.com/datacontinuo-com/aio_aerospike_python/issues"><img src="https://img.shields.io/github/issues/datacontinuo-com/aio_aerospike_python" /></a>
