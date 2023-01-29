@@ -5,15 +5,15 @@ authors = [
   { name="David Levy", email="davidvoler@gmail.com" },
   { name="David Levy", email="david@datacontinuo.com" },
 ]
-description = "Asyncio wrapper of aerospike python client"
+description = "Asyncio wrapper of the Aerospike python client"
 readme = "README.md"
 requires-python = ">=3.7"
 classifiers = [
-    "Programming Language :: Python :: 3",
-     "License :: OSI Approved :: Apache Software License",
-    "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: Apache Software License",
+  "Operating System :: OS Independent",
 ]
 
 [project.urls]
-"Homepage" = "https://github.com/datacontinuo-com/aio_aerospike_python"
-"Bug Tracker" = "https://github.com/datacontinuo-com/aio_aerospike_python/issues"
+"Homepage" = "https://github.com/datacontinuo/aio_aerospike_python"
+"Bug Tracker" = "https://github.com/datacontinuo/aio_aerospike_python/issues"
