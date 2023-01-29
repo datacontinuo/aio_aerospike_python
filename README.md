@@ -1,9 +1,24 @@
 # asyncio wrapper of aerospike python client library #
 
 This project is work in progress. please do not use it in production yet. 
+<p align="center">
+    <a href="https://github.com/datacontinuo-com/aio_aerospike_python" target="_blank">
+        <img src="https://img.shields.io/github/last-commit/datacontinuo-com/aio_aerospike_python" alt="Latest Commit">
+    </a>
+    <img src="https://opensource.org/licenses/Apache-2.0">
+    <img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/datacontinuo-com/aio_aerospike_python?label=Latest%20Release">
+    <br />
+    <a href="https://github.com/datacontinuo-com/aio_aerospike_python/issues"><img src="https://img.shields.io/github/issues/datacontinuo-com/aio_aerospike_python" /></a>
+    <img alt="GitHub Workflow Status Test and Lint (branch)" src="https://img.shields.io/github/actions/workflow/status/datacontinuo-com/aio_aerospike_python/tests.yml?branch=main">
+    <img alt="Contributors" src="https://img.shields.io/github/contributors/datacontinuo-com/aio_aerospike_python">
+    <br />
+    <a href="https://pypi.org/project/aio-aerospike-python/" target="_blank">
+        <img src="https://img.shields.io/pypi/v/aio-aerospike-python" alt="Package version">
+    </a>
+    <img src="https://img.shields.io/pypi/pyversions/aio-aerospike-python">
+</p>
 
 
-![Python Logo](https://www.python.org/static/community_logos/python-logo.png "Sample inline image")
 
 [Aerospike python client library docs](https://aerospike-python-client.readthedocs.io/en/latest/index.html)
 
@@ -18,9 +33,7 @@ The project is not yet uploaded to a pip repository
 To test it you will need to build locally and pip install from a local directory.
 
 ```bash
-python3 -m pip install --upgrade build
-python3 -m build
-pip install -e .
+pip install aio-aerospike-python==0.0.2
 ```
 
 
