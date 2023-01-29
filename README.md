@@ -1,6 +1,5 @@
 # asyncio wrapper of aerospike python client library #
 
-This project is work in progress. please do not use it in production yet. 
 
 
 <a href="https://github.com/datacontinuo-com/aio_aerospike_python" target="_blank">
@@ -17,6 +16,7 @@ This project is work in progress. please do not use it in production yet.
 <img src="https://img.shields.io/pypi/pyversions/aio-aerospike-python">
 
 
+This project is work in progress. please do not use it in production yet. 
 
 
 
