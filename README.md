@@ -1,20 +1,18 @@
 # asyncio wrapper of aerospike python client library #
 
 This project is work in progress. please do not use it in production yet. 
-<p align="center">
-    <a href="https://github.com/datacontinuo-com/aio_aerospike_python" target="_blank">
-        <img src="https://img.shields.io/github/last-commit/datacontinuo-com/aio_aerospike_python" alt="Latest Commit">
-    </a>
-    <img src="https://img.shields.io/badge/License-Apache_2.0-blue.svg">
-    <br />
-    <a href="https://github.com/datacontinuo-com/aio_aerospike_python/issues"><img src="https://img.shields.io/github/issues/datacontinuo-com/aio_aerospike_python" /></a>
-    <img alt="Contributors" src="https://img.shields.io/github/contributors/datacontinuo-com/aio_aerospike_python">
-    <br />
-    <a href="https://pypi.org/project/aio-aerospike-python/" target="_blank">
-        <img src="https://img.shields.io/pypi/v/aio-aerospike-python" alt="Package version">
-    </a>
-    <img src="https://img.shields.io/pypi/pyversions/aio-aerospike-python">
-</p>
+<a href="https://github.com/datacontinuo-com/aio_aerospike_python" target="_blank">
+    <img src="https://img.shields.io/github/last-commit/datacontinuo-com/aio_aerospike_python" alt="Latest Commit">
+</a>
+<img src="https://img.shields.io/badge/License-Apache_2.0-blue.svg">
+<br />
+<a href="https://github.com/datacontinuo-com/aio_aerospike_python/issues"><img src="https://img.shields.io/github/issues/datacontinuo-com/aio_aerospike_python" /></a>
+<img alt="Contributors" src="https://img.shields.io/github/contributors/datacontinuo-com/aio_aerospike_python">
+<br />
+<a href="https://pypi.org/project/aio-aerospike-python/" target="_blank">
+    <img src="https://img.shields.io/pypi/v/aio-aerospike-python" alt="Package version">
+</a>
+<img src="https://img.shields.io/pypi/pyversions/aio-aerospike-python">
 
 
 
