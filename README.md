@@ -6,10 +6,8 @@ This project is work in progress. please do not use it in production yet.
         <img src="https://img.shields.io/github/last-commit/datacontinuo-com/aio_aerospike_python" alt="Latest Commit">
     </a>
     <img src="https://img.shields.io/badge/License-Apache_2.0-blue.svg">
-    <img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/datacontinuo-com/aio_aerospike_python?label=Latest%20Release">
     <br />
     <a href="https://github.com/datacontinuo-com/aio_aerospike_python/issues"><img src="https://img.shields.io/github/issues/datacontinuo-com/aio_aerospike_python" /></a>
-    <img alt="GitHub Workflow Status Test and Lint (branch)" src="https://img.shields.io/github/actions/workflow/status/datacontinuo-com/aio_aerospike_python/tests.yml?branch=main">
     <img alt="Contributors" src="https://img.shields.io/github/contributors/datacontinuo-com/aio_aerospike_python">
     <br />
     <a href="https://pypi.org/project/aio-aerospike-python/" target="_blank">
@@ -29,8 +27,6 @@ This project provides a simple way to use aerospike with asyncio.
 
 
 ## installation ##
-The project is not yet uploaded to a pip repository 
-To test it you will need to build locally and pip install from a local directory.
 
 ```bash
 pip install aio-aerospike-python==0.0.2
