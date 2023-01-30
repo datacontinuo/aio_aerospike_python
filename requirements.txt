@@ -1,1 +1,1 @@
-aerospike
+aerospike==10.0.0
