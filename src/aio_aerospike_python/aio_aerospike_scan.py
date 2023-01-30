@@ -7,7 +7,11 @@ from typing import List, Dict
 class AioAerospikeScan():
     def __init__(self, scan:aerospike.Scan) -> None:
         self._scan = scan
-    
+
+    def add_ops(self, ops):
+        '''Add a list of write ops to the query. When used with :meth:`Query.execute_background` the query will perform the write ops on any records found. If no predicate is attached to the Query it will apply ops to all the records in the specified set.
+        '''
+        return self._scan.add_ops(ops)    
     async def results(self, policy=None , nodename=None) -> List:
         '''Buffer the records resulting from the scan, and return them as a list of records.If provided nodename should be the Node ID of a node to limit the scan to.
         '''
