@@ -19,8 +19,10 @@ jobs:
         python-version: ["3.7","3.8", "3.9", "3.10", "3.11"]
 
     steps:
-    - compose-file: docker-compose.yaml
     - uses: actions/checkout@v3
+    - uses: isbang/compose-action@v1.4.1
+        with:
+          compose-file: docker-compose.yaml
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v3
       with:
