@@ -27,7 +27,7 @@ This project is based on  [Aerospike python client library docs](https://aerospi
 ## installation ##
 
 ```bash
-pip install aio-aerospike-python==0.0.2
+pip install aio-aerospike-python
 ```
 
 
