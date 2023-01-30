@@ -23,7 +23,7 @@ class AioAerospikeScan():
         return await loop.run_in_executor(None, 
                 partial(self._scan.results, policy , nodename))
             
-    async def results(self,policy=None , nodename=None) -> list:
+    async def results(self,policy=None , nodename=None) -> List:
         '''Buffer the records resulting from the scan, and return them as a list of records.If provided nodename should be the Node ID of a node to limit the scan to.
         '''
         loop = asyncio.get_event_loop()
@@ -54,7 +54,7 @@ class AioAerospikeScan():
         '''
         return self._scan.paginate()
             
-    async def results(self, policy =None , nodename=None) -> list:
+    async def results(self, policy =None , nodename=None) -> List:
         '''Buffer the records resulting from the scan, and return them as a list of records.If provided nodename should be the Node ID of a node to limit the scan to.
         '''
         loop = asyncio.get_event_loop()
