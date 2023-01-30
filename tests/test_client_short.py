@@ -10,12 +10,15 @@ from aio_aerospike_python import (
     INDEX_TYPE_LIST)
 
 
+def get_base_class():
+    import sys
+    if "3.7" in sys.version:
+        return unittest.TestCase
+    else:
+        return unittest.IsolatedAsyncioTestCase
 
 
-
-
-
-class Connect(unittest.IsolatedAsyncioTestCase):
+class Connect(get_base_class()):
     @classmethod
     def setUpClass(cls) -> None:
         config = {
