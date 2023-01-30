@@ -146,3 +146,6 @@ asyncio.run(main())
 ```
 
 
+## License ##
+
+The AIO Aerospike Python Client is made available under the terms of the Apache License, Version 2, as stated in the file LICENSE.
