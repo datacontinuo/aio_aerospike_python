@@ -1,4 +1,3 @@
-
 import unittest
 import aerospike
 import asyncio
@@ -102,14 +101,7 @@ class Connect(get_base_class()):
         for k in keys:
             await self._client.put(key=k, bins={"a": "test"})
         results = await self._client.get_many(keys=keys)
-        # print(results)
-        # found = []
-        # for r in results:
-        #     if r[2]:
-        #         found.append(r)
-        # print(len(found))
-        # self.assertEqual(len(results),2, "we got 2 results from get_many")
-        # self.assertEqual(len(found),0, "we found 0  records")
+
 
     async def test_get_node_names(self):
         r = await self._client.get_node_names()

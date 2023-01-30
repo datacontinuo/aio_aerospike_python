@@ -36,12 +36,12 @@ class AioAerospikeScan():
         return await loop.run_in_executor(None, 
                 partial(self._scan.foreach, callback, policy, options , nodename))
             
-    async def get_parts(self) -> Dict:
-        '''Gets the complete partition status of the scan. Returns a dictionary of the form {id:(id, init, done, digest), ...}.
-        '''
-        loop = asyncio.get_event_loop()
-        return await loop.run_in_executor(None, 
-                partial(self._scan.get_parts ))
+    # async def get_parts(self) -> Dict:
+    #     '''Gets the complete partition status of the scan. Returns a dictionary of the form {id:(id, init, done, digest), ...}.
+    #     '''
+    #     loop = asyncio.get_event_loop()
+    #     return await loop.run_in_executor(None, 
+    #             partial(self._scan.get_parts ))
             
     def is_done(self) -> bool:
         '''Gets the status of scan
@@ -63,5 +63,5 @@ class AioAerospikeScan():
     def select(self, *bins):
         '''Set a filter on the record bins resulting from results() or foreach(). If a selected bin does not exist in a record it will not appear in the bins portion of that record tuple.
         '''
-        return self._scan.select(bins)
+        return self._scan.select(*bins)
             

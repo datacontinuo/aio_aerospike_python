@@ -53,12 +53,23 @@ async def use_scan(mina: int, maxa: int):
         print(r)
 
 
-
+async def test_get_many():
+    keys=[("test", "test", 2200001), ("test", "test", 2200002), ("test", "test", 2200003)]
+    for k in keys:
+        await client.put(key=k, bins={"a": "test"})
+    results = await client.get_many(keys=keys)
+    print(results)
+    found = []
+    for r in results:
+        if r[2]:
+            found.append(r)
+    print(found)
 
 loop = asyncio.get_event_loop()
 loop.run_until_complete(put_some_data(5000))
 loop.run_until_complete(read_data(50))
 loop.run_until_complete(use_query(10,20))
 loop.run_until_complete(use_scan(40, 45))
+loop.run_until_complete(test_get_many())
 
 # client.close()
