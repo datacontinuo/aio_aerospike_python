@@ -6,25 +6,63 @@ from typing import Union, List, Dict, Tuple
 from aio_aerospike_python.aio_aerospike_query import AioAerospikeQuery
 from aio_aerospike_python.aio_aerospike_scan import AioAerospikeScan
 from aerospike_helpers.batch.records import BatchRecords
+import exception
 
 
 class AioAerospikeClient():
+    """
+    """
     def __init__(self, config: Dict, username: str = None, password: str = None) -> None:
+        """_summary_
+
+        :param config: aerospikey config dictionary 
+        :type config: Dict
+        :param username: username for aerospike, require aerospike EE, defaults to None
+        :type username: str, optional
+        :param password: password for aerospike, require aerospike EE, defaults to None
+        :type password: str, optional
+        """
         if username and password:
             self._client = aerospike.Client(config).connect(username, password)
         else:
             self._client = aerospike.Client(config).connect()
 
-    async def append(self, key: Tuple, bin: str, val: str, meta: Dict, policy: Dict):
-        '''Append the string val to the string value in bin.
-        '''
+    async def append(self, key: Tuple, bin: str, val: str, meta: Dict, policy: Dict) -> None:
+        """Append the string val to the string value in bin.
+
+        :param key: key tuple (namespace, set, key value) 
+        :type key: Tuple
+        :param bin: name of the bin that we want to append the text
+        :type bin: str
+        :param val: append with this string value
+        :type val: str
+        :param meta: 
+        :type meta: Dict
+        :param policy: aerospike policy
+        :type policy: Dict
+        :return: 
+        :rtype: None
+        """
         loop = asyncio.get_event_loop()
         return await loop.run_in_executor(None,
                                           partial(self._client.append, key, bin, val, meta, policy))
 
-    async def apply(self, key, module, function, args=None, policy=None):
-        '''Apply a registered (see udf_put()) record UDF to a particular record.
-        '''
+    async def apply(self, key:Tuple, module:str, function:str, args:List=None, policy:Dict=None) -> exception.AerospikeError:
+        """Apply a registered (see udf_put()) record UDF to a particular record.
+
+        :param key: _description_
+        :type key: Tuple
+        :param module: _description_
+        :type module: str
+        :param function: _description_
+        :type function: str
+        :param args: _description_, defaults to None
+        :type args: List, optional
+        :param policy: _description_, defaults to None
+        :type policy: Dict, optional
+        :return: a subclass of AerospikeError.
+        :rtype: exception.AerospikeError
+        """
         loop = asyncio.get_event_loop()
         return await loop.run_in_executor(None,
                                           partial(self._client.apply, key, module, function, args, policy))
