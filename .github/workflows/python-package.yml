@@ -20,12 +20,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: Run Docker Compose
-      uses: docker/compose@v3
-      with:
-        command: up
-      env:
-        DOCKER_COMPOSE_FILE: docker-compose.yaml
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v3
       with:
@@ -41,6 +35,10 @@ jobs:
         flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
         # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+
+    - name: Run Docker Compose
+      run: |
+        docker compose up -d 
     - name: Test with pytest
       run: |
         pytest
