@@ -38,6 +38,12 @@ jobs:
     - name: Run Docker Compose
       run: |
         docker compose up -d 
+    - name: Verify docker is up 
+      run: |
+        docker ps -aq 
+    - name: Wait for docker  
+      run: |
+        sleep 2
     - name: Test with pytest
       run: |
         pytest
