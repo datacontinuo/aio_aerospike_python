@@ -2,7 +2,7 @@
 import aerospike
 import asyncio
 from functools import partial
-
+from typing import List, Dict
 
 class AioAerospikeQuery():
     def __init__(self, query: aerospike.Query):
@@ -15,26 +15,26 @@ class AioAerospikeQuery():
         return await loop.run_in_executor(None,
                 partial(self._query.add_ops, ops))
 
-    async def apply(self, module, function, arguments: list = None):
+    async def apply(self, module, function, arguments: List = None):
         '''Aggregate the results() using a stream UDF. If no predicate is attached to the Query the stream UDF will aggregate over all the records in the specified set.
         '''
         loop = asyncio.get_event_loop()
         return await loop.run_in_executor(None,
                 partial(self._query.apply, module, function, arguments))
 
-    async def execute_background(self, policy: dict = None) -> list:
+    async def execute_background(self, policy: Dict = None) -> List:
         '''Buffer the records resulting from the query, and return them as a list of records.
         '''
         loop = asyncio.get_event_loop()
         return await loop.run_in_executor(None,
                 partial(self._query.execute_background, policy))
 
-    def foreach(self, callback, policy: dict = None):
+    def foreach(self, callback, policy: Dict = None):
         '''Invoke the callback function for each of the records streaming back from the query.
         '''
         return self._query.foreach(callback, policy)
 
-    async def get_parts(self) -> dict:
+    async def get_parts(self) -> Dict:
         '''Gets the complete partition status of the query. Returns a dictionary of the form {id:(id, init, done, digest), ...}.
         '''
         loop = asyncio.get_event_loop()
@@ -61,7 +61,7 @@ class AioAerospikeQuery():
         '''
         self._query.records_per_second()
 
-    async def results(self, policy: dict=None) -> list:
+    async def results(self, policy: Dict=None) -> List:
         '''Buffer the records resulting from the query, and return them as a list of records.
         '''
         loop=asyncio.get_event_loop()

@@ -2,19 +2,21 @@
 import aerospike
 import asyncio
 from functools import partial
+from typing import List, Dict
+
 
 class AioAerospikeScan():
     def __init__(self, scan:aerospike.Scan) -> None:
         self._scan = scan
     
-    async def results(self, policy=None , nodename=None) -> list:
+    async def results(self, policy=None , nodename=None) -> List:
         '''Buffer the records resulting from the scan, and return them as a list of records.If provided nodename should be the Node ID of a node to limit the scan to.
         '''
         loop = asyncio.get_event_loop()
         return await loop.run_in_executor(None, 
                 partial(self._scan.results, policy , nodename))
             
-    async def results(self,policy=None , nodename=None) -> list:
+    async def results(self,policy=None , nodename=None) -> List:
         '''Buffer the records resulting from the scan, and return them as a list of records.If provided nodename should be the Node ID of a node to limit the scan to.
         '''
         loop = asyncio.get_event_loop()
@@ -35,7 +37,7 @@ class AioAerospikeScan():
         return await loop.run_in_executor(None, 
                 partial(self._scan.foreach, callback, policy, options , nodename))
             
-    async def get_parts(self) -> dict:
+    async def get_parts(self) -> Dict:
         '''Gets the complete partition status of the scan. Returns a dictionary of the form {id:(id, init, done, digest), ...}.
         '''
         loop = asyncio.get_event_loop()
