@@ -51,7 +51,7 @@ class AioAerospikeQuery():
         '''
         return self._query.max_records()
 
-    def paginate():
+    def paginate(self):
         '''Set pagination filter to receive records in bunch (max_records or page_size).
         '''
         return self._query.paginate()
