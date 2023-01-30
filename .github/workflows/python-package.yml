@@ -20,9 +20,12 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    # - uses: isbang/compose-action@v1.4.1
-    #     with:
-    #       compose-file: docker-compose.yaml
+    - name: Run Docker Compose
+      uses: docker/compose@v1
+      with:
+        command: up
+      env:
+        DOCKER_COMPOSE_FILE: docker-compose.yaml
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v3
       with:
