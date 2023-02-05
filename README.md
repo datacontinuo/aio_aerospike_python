@@ -21,8 +21,8 @@ This project is work in progress. please do not use it in production yet.
 
 This project provides a simple way to use aerospike with asyncio. 
 
-This project is based on  [Aerospike python client library docs](https://aerospike-python-client.readthedocs.io/en/latest/index.html) 
-[Docs](https://github.com/aerospike/aerospike-client-python)
+This project is based on  [aerospike-python-client-library](https://github.com/aerospike/aerospike-client-python)
+[Docs](https://aerospike-python-client.readthedocs.io/en/latest/index.html) 
 
 ## installation ##
 
