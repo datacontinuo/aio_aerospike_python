@@ -6,10 +6,14 @@
 Welcome to aio-aerospike-python's documentation!
 ================================================
 
+
+
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
-
+   install
+   quickstart
+   examples 
 
 
 Indices and tables
